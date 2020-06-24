@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <title>StandoffUp</title>
+</head>
+<body>
+  <standoffup>
+    <standoffup-sidebar></standoffup-sidebar>
+    <standoffup-body>
+      <header>
+        <div class="topbar">
+          <div class="topbar-menu">
+            <a href="#link" class="topbar-menu__link topbar-menu__link--active">
+              <span class="topbar-menu__link--icon icon__home"></span>
+              <span class="topbar-menu__link--text">Главная</span>
+            </a>
+            <a href="#link" class="topbar-menu__link">
+              <span class="topbar-menu__link--icon icon__headphones"></span>
+              <span class="topbar-menu__link--text">Поддержка</span>
+            </a>
+            <a href="#link" class="topbar-menu__link">
+              <span class="topbar-menu__link--icon icon__help-circle"></span>
+              <span class="topbar-menu__link--text">FAQ</span>
+            </a>
+          </div>
+          <div class="topbar-profile">
+            <div class="topbar-profile__username">Викуторт</div>
+            <img src="/assets/img/avatar.png" alt="avatar" class="topbar-profile__avatar" />
+            <div class="topbar-profile__balance">0.30 P</div>
+            <button class="button button--green">
+              <span class="button__text">Пополнить</span>
+              <span class="button__icon icon__dollar"></span>
+            </button>
+            <div class="topbar-profile__exit">
+              <span class="icon__exit"></span>
+            </div>
+          </div>
+        </div>
+      </header>
+      <main>
+        <page-part>
+          <div class="game">
+            <div class="game-setup">
+              <div class="game-setup-weapon">
+                <img src="/assets/img/mp7.png" alt="gun" class="game-setup-weapon__image" />
+                <div class="game-setup-weapon__name">
+                  <span class="game-setup-weapon__name--0">MP7</span>
+                  <span class="game-setup-weapon__name--1">2 Years Red</span>
+                </div>
+              </div>
+              <div class="game-setup-bet">
+                <div class="game-setup-bet__title">Сделать ставку</div>
+                <div class="game-setup-bet__actions">
+                  <input type="tel" class="game-setup-bet__auto-draw">
+                  <button class="button button--green">
+                    <span class="button__text">Пополнить</span>
+                    <span class="button__icon icon__dollar"></span>
+                  </button>
+                </div>
+                <div class="game-setup-bet__options">
+                  <div class="game-setup-bet__option game-setup-bet__option--chosen">1.00x</div>
+                  <div class="game-setup-bet__option">12.00x</div>
+                  <div class="game-setup-bet__option">1.00x</div>
+                  <div class="game-setup-bet__option">1.00x</div>
+                  <div class="game-setup-bet__option">6.12x</div>
+                </div>
+              </div>
+            </div>
+            <div class="game-info">
+              <div class="game-info__title">Статистика раунда</div>
+            </div>
+            <div class="game-live-bets">
+              <div class="game-live-bets__bet">13.51x</div>
+            </div>
+            <div class="game-matches">
+              <div class="game-matches__match">
+                <img src="/assets/img/avatar.png" alt="avatar" class="game-matches__avatar" />
+                <div class="game-matches__bet"><Price>567.21</Price></div>
+                <div class="game-matches__weapons">
+                  <img src="/assets/img/mp7.png" alt="weapon" class="game-matches__weapon" />
+                  <img src="/assets/img/mp7.png" alt="weapon" class="game-matches__weapon" />
+                  <img src="/assets/img/mp7.png" alt="weapon" class="game-matches__weapon" />
+                  <div class="game-matches__weapons-count">+5</div>
+                </div>
+                <div class="game-matches__status">В игре</div>
+              </div>
+            </div>
+          </div>
+          <footer>
+            <a href="#link">Пользовательское соглашение</a>
+            <a href="#link">Проверка честной игры</a>
+          </footer>
+        </page-part>
+        <standoffup-chat>
+          <div className="chat-top">
+            <div className="chat__header">
+              <span className="chat__header--title">Чат</span>
+              <a href="/asd" className="chat__header--anchor">Правила игры</a>
+            </div>
+            <div className="chat__online">
+              <div className="chat__online--title">
+                <span className="chat__online--circle"></span>
+                <span>678</span>
+              </div>
+              <span className="chat__online--text">online</span>
+            </div>
+            <div className="chat__hide">
+              <span className="icon__chevron-down"></span>
+            </div>
+          </div>
+          <div className="chat-field">
+            <div className="chat-message">
+              <img src="/assets/img/avatar.png" alt="avatar" class="chat-message__avatar" />
+              <div class="chat-message__info">
+                <div class="chat-message__title">
+                  <span class="chat-message__title--username">CmeTanKa</span>
+                  <span class="chat-message__title--time">17:15</span>
+                </div>
+                <div class="chat-message__message">Поделитесь скинами))</div>
+              </div>
+            </div>
+            <div className="chat-message">
+              <img src="/assets/img/avatar.png" alt="avatar" class="chat-message__avatar" />
+              <div class="chat-message__info">
+                <div class="chat-message__title">
+                  <span class="chat-message__title--username">CmeTanKa</span>
+                  <span class="chat-message__title--time">17:15</span>
+                </div>
+                <div class="chat-message__message">Поделитесь скинами))</div>
+              </div>
+            </div>
+            <div className="chat-message">
+              <img src="/assets/img/avatar.png" alt="avatar" class="chat-message__avatar" />
+              <div class="chat-message__info">
+                <div class="chat-message__title">
+                  <span class="chat-message__title--username">CmeTanKa</span>
+                  <span class="chat-message__title--time">17:15</span>
+                </div>
+                <div class="chat-message__message">Поделитесь скинами))</div>
+              </div>
+            </div>
+            <div className="chat-message">
+              <img src="/assets/img/avatar.png" alt="avatar" class="chat-message__avatar" />
+              <div class="chat-message__info">
+                <div class="chat-message__title">
+                  <span class="chat-message__title--username">CmeTanKa</span>
+                  <span class="chat-message__title--time">17:15</span>
+                </div>
+                <div class="chat-message__message">Поделитесь скинами))</div>
+              </div>
+            </div>
+            <div className="chat-message">
+              <img src="/assets/img/avatar.png" alt="avatar" class="chat-message__avatar" />
+              <div class="chat-message__info">
+                <div class="chat-message__title">
+                  <span class="chat-message__title--username">CmeTanKa</span>
+                  <span class="chat-message__title--time">17:15</span>
+                </div>
+                <div class="chat-message__message">Поделитесь скинами))</div>
+              </div>
+            </div>
+            <div className="chat-message">
+              <img src="/assets/img/avatar.png" alt="avatar" class="chat-message__avatar" />
+              <div class="chat-message__info">
+                <div class="chat-message__title">
+                  <span class="chat-message__title--username">CmeTanKa</span>
+                  <span class="chat-message__title--time">17:15</span>
+                </div>
+                <div class="chat-message__message">Поделитесь скинами))</div>
+              </div>
+            </div>
+            <div className="chat-message">
+              <img src="/assets/img/avatar.png" alt="avatar" class="chat-message__avatar" />
+              <div class="chat-message__info">
+                <div class="chat-message__title">
+                  <span class="chat-message__title--username">CmeTanKa</span>
+                  <span class="chat-message__title--time">17:15</span>
+                </div>
+                <div class="chat-message__message">Поделитесь скинами))</div>
+              </div>
+            </div>
+            <div className="chat-message">
+              <img src="/assets/img/avatar.png" alt="avatar" class="chat-message__avatar" />
+              <div class="chat-message__info">
+                <div class="chat-message__title">
+                  <span class="chat-message__title--username">CmeTanKa</span>
+                  <span class="chat-message__title--time">17:15</span>
+                </div>
+                <div class="chat-message__message">Поделитесь скинами))</div>
+              </div>
+            </div>
+            <div className="chat-message">
+              <img src="/assets/img/avatar.png" alt="avatar" class="chat-message__avatar" />
+              <div class="chat-message__info">
+                <div class="chat-message__title">
+                  <span class="chat-message__title--username">CmeTanKa</span>
+                  <span class="chat-message__title--time">17:15</span>
+                </div>
+                <div class="chat-message__message">Поделитесь скинами))</div>
+              </div>
+            </div>
+            <div className="chat-message">
+              <img src="/assets/img/avatar.png" alt="avatar" class="chat-message__avatar" />
+              <div class="chat-message__info">
+                <div class="chat-message__title">
+                  <span class="chat-message__title--username">CmeTanKa</span>
+                  <span class="chat-message__title--time">17:15</span>
+                </div>
+                <div class="chat-message__message">Поделитесь скинами))</div>
+              </div>
+            </div>
+            <div className="chat-message">
+              <img src="/assets/img/avatar.png" alt="avatar" class="chat-message__avatar" />
+              <div class="chat-message__info">
+                <div class="chat-message__title">
+                  <span class="chat-message__title--username">CmeTanKa</span>
+                  <span class="chat-message__title--time">17:15</span>
+                </div>
+                <div class="chat-message__message">Поделитесь скинами))</div>
+              </div>
+            </div>
+            <div className="chat-message">
+              <img src="/assets/img/avatar.png" alt="avatar" class="chat-message__avatar" />
+              <div class="chat-message__info">
+                <div class="chat-message__title">
+                  <span class="chat-message__title--username">CmeTanKa</span>
+                  <span class="chat-message__title--time">17:15</span>
+                </div>
+                <div class="chat-message__message">Поделитесь скинами))</div>
+              </div>
+            </div>
+          </div>
+          <div className="chat-bottom">
+            <div class="chat-send">
+              <input type="text" placeholder="Ввидите сообщение..." class="chat-send__input" />
+              <div class="chat-send__submit">
+                <span class="icon__paper-plane"></span>
+              </div>
+            </div>
+          </div>
+        </standoffup-chat>
+      </main>
+    </standoffup-body>
+  </standoffup>
+</body>
+</html>
