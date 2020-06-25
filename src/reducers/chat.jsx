@@ -1,4 +1,3 @@
-
 // Defines
 
 const CHAT_UPDATE_ONLINE = "CHAT/UPDATE_ONLINE";

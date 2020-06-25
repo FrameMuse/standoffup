@@ -18,35 +18,28 @@ import { BrowserRouter } from "react-router-dom";
 import Side from "./side";
 import Chat from "./chat";
 import PagePart from "./page-part.jsx";
+import Header from "./modules/header";
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(rootReducer, composeEnhancer(applyMiddleware(...[thunk])));
 
-
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
-      <Side />
+      <standoffup>
+        <Side />
+        <standoffup-body>
+          <header>
+            <Header />
+          </header>
+          <main>
+            <PagePart />
+            <Chat />
+          </main>
+        </standoffup-body>
+      </standoffup>
     </BrowserRouter>
   </Provider>,
-  document.querySelector("standoffup-sidebar")
-);
-
-ReactDOM.render(
-  <Provider store={store}>
-    <BrowserRouter>
-      <PagePart />
-    </BrowserRouter>
-  </Provider>,
-  document.querySelector("page-part")
-);
-
-ReactDOM.render(
-  <Provider store={store}>
-    <BrowserRouter>
-      <Chat />
-    </BrowserRouter>
-  </Provider>,
-  document.querySelector("standoffup-chat")
+  document.querySelector("standoffup")
 );

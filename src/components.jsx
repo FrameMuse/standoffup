@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { switchLang } from "./reducers/lang";
 
 export class Logo extends React.Component {
     render() {
@@ -13,41 +15,19 @@ export class Logo extends React.Component {
     }
 }
 
-export class Panel extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            volume: false,
-            lang: "RU"
-        };
-    }
-
-    toggleVolume() {
-        this.setState({
-            ...this.state,
-            volume: !this.state.valume
-        });
-    }
-
-    toggleLang() {
-        this.setState({
-            ...this.state,
-            lang: this.state.lang === "RU" ? "EN" : "RU"
-        });
-    }
-
-    render() {
-        return (
-            <div className="topbar-panel">
-                <div className="topbar-panel__button" onClick={() => this.toggleLang()}>{this.state.lang}</div>
-                <div className="topbar-panel__button" onClick={() => this.toggleVolume()}>
-                    <span className="icon__volume"></span>
-                </div>
+export const Panel = () => {
+    const lang = useSelector(state => state.lang.list);
+    const dispatch = useDispatch();
+    const toggleLang = () => dispatch(switchLang(lang.topbar.langs[1]));
+    return (
+        <div className="topbar-panel">
+            <div className="topbar-panel__button" onClick={() => toggleLang()}>{lang.topbar.langs[0]}</div>
+            <div className="topbar-panel__button">
+                <span className="icon__volume"></span>
             </div>
-        )
-    }
-}
+        </div>
+    )
+};
 
 export const Column = ({ children, icon }) => (
     <div className={icon ? "column column--0" : "column"}>
@@ -67,28 +47,26 @@ export const Checkbox = ({ onChange }) => (
     </label>
 );
 
-export class Price extends React.Component {
-    rice(number, toFixed = 2, currency = "₽") {
+export class count {
+    constructor(number, toFixed = 2, currency = "₽") {
         if (isNaN(number)) {
             const numberParse = +number.replace(/[^0-9$.,]/g, "");
             number = isNaN(numberParse) ? 0 : numberParse;
         }
-        number = number === "" ? 0 : number
+        number = number === "" ? 0 : currency === "$" ? number * 0.01 : number
         this.pureValue = Number.parseFloat(number);
-        this.value = this.pureValue.toFixed(toFixed) + " " + currency;
+        this.value = this.pureValue.toFixed(toFixed) + " " + currency;        
     }
 
-    get(value, toFixed = 2) {
-        this.rice(value, toFixed);
-        return this.value;
-    }
-
-    render() {
-        return (
-            <>{this.get(this.props.children)}</>
-        )
+    static get(value, toFixed = 2, currency) {
+        return new count(value, toFixed, currency).value;
     }
 }
+
+export const Price = ({ children, toFixed = 2 }) => {
+    const currency = useSelector(state => state.lang.list.currency);
+    return <>{count.get(children, toFixed, currency)}</>;
+};
 
 export const Weapon = ({ data = {}, picked, onClick }) => {
     const { RNColor = "lipstick", price = 0, imageSrc = "/assets/img/gun.png", name = "???", alias="???" } = data;
@@ -114,3 +92,39 @@ export const Button = ({ onClick, color, children, icon, note }) => (
         {note ? <span className="button__note">{note}</span> : false}
     </button>
 );
+
+export class FAQ extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            root: document.getElementById("faq_" + this.props.key),
+        };
+    }
+
+    static clause({ summary, children }) {
+        const deploy = (synEvent) => {
+            const target = synEvent.target;
+            const parent = target.parentNode;
+            const contentElement = parent.querySelector(".faq__content");
+            const height = contentElement.scrollHeight;
+
+            contentElement.style = `--height: ${height}px`;
+            parent.classList.toggle("faq__clause--deployed");
+        };
+        return (
+            <div className="faq__clause" onClick={deploy}>
+                <div className="faq__summary">{summary}</div>
+                <div className="faq__content">
+                    <div className="faq__content--inner">{children}</div>
+                </div>
+            </div>
+        );
+    }
+
+    render() {
+        return (
+            <div className="faq">{this.props.children}</div>
+        );
+    }
+}

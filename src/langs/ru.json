@@ -1,0 +1,22 @@
+{
+    "currency": "₽",
+    "topbar": {
+        "logo": "standoffup",
+        "langs": ["RU", "EN"],
+        "menu": {
+            "home": "Главная",
+            "support": "Поддержка",
+            "faq": "FAQ"
+        },
+        "deposit": "Пополнить"
+    },
+    "sidebar": {
+        "inventory_info": {
+            "balance": "баланс",
+            "selected": "выбрано",
+            "selectAll": "выбрать всё",
+            "all": "Всё"
+        },
+        "event_name": "Беслпатный нож"
+    }
+}

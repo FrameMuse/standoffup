@@ -1,0 +1,22 @@
+{
+    "currency": "$",
+    "topbar": {
+        "logo": "standoffup",
+        "langs": ["EN", "RU"],
+        "menu": {
+            "home": "Home",
+            "support": "Support",
+            "faq": "FAQ"
+        },
+        "deposit": "Deposit"
+    },
+    "sidebar": {
+        "inventory_info": {
+            "balance": "balance",
+            "selected": "selected for",
+            "selectAll": "select all",
+            "all": "All"
+        },
+        "event_name": "Free knife"
+    }
+}

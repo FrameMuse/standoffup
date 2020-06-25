@@ -218,9 +218,10 @@ hr {
 
 standoffup {
     display: flex;
+    width: 100vw;
 }
 
-standoffup-sidebar {
+.sidebar-home {
     display: inline-block;
     padding: 2.5em 1.5em;
     border-right: 1px solid var(--color-whitePurple);
@@ -230,7 +231,7 @@ standoffup-sidebar {
     overflow: auto;
 }
 
-standoffup-sidebar::before {
+.sidebar-home::before {
     content: "";
     position: absolute;
     top: 0;
@@ -809,6 +810,7 @@ standoffup-body {
 
 .chat-field {
     display: grid;
+    align-content: baseline;
     row-gap: 2em;
     padding-left: 1.5em;
     height: calc(100vh - 24.125em);
@@ -1056,6 +1058,14 @@ standoffup-body {
     border-radius: 0.75em;
 }
 
+.game-matches__match--loss {
+    background: linear-gradient(to right, var(--color-whitePurple) 35%, rgba(237, 30, 31, 0.15));
+}
+
+.game-matches__match--won {
+    background: linear-gradient(to right, var(--color-whitePurple) 35%, rgba(33, 198, 110, 0.15));
+}
+
 .game-matches__avatar {
     width: 4em;
     height: 4em;
@@ -1096,4 +1106,33 @@ standoffup-body {
     background: var(--color-nice);
     border-radius: 0.5em;
     color: var(--color-lightPurple);
+}
+
+.game-matches__loss {
+    padding: 1em 2em;
+    margin-left: auto;
+    background: var(--color-red);
+    border-radius: 0.5em;
+    font-weight: 500;
+}
+
+.game-matches__won {
+    display: flex;
+    margin-left: auto;
+}
+
+.game-matches__won--sum {
+    padding: 1em 2em;
+    margin-right: 0.5em;
+    background: #133436;
+    border-radius: 0.5em;
+    color: var(--color-green);
+    font-weight: 500;
+}
+
+.game-matches__won--hash {
+    padding: 1em 2em;
+    background: var(--color-green);
+    border-radius: 0.5em;
+    font-weight: 500;
 }

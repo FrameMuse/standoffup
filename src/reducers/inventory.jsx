@@ -2,8 +2,14 @@
 
 const INVENTORY_TOGGLE_ITEM = "INVENTORY/TOGGLE/ITEM";
 const INVENTORY_TOGGLE_ALL = "INVENTORY/TOGGLE/ALL";
-
-const weapons = Array(4).fill(0).map(_ => ({ picked: false }));
+const weapons = Array(4).fill(0).map(_ => ({
+    RNColor: "myGlass",
+    price: 77.12,
+    imageSrc: "/assets/img/gun.png",
+    name: "2 Years Red",
+    alias: "MP7",
+    picked: false
+}));
 
 // Reducer
 
