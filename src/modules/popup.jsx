@@ -24,7 +24,7 @@ class Popup extends React.Component {
 
     window.asd = (n, a) => this.props.dispatch(deployPopup(n, a));
   }
-  window(name, props = { events: [] }, toggle) {
+  window(name, props = { events: [], promo: 0 }, toggle) {
     switch (name) {
       case "sell":
         return {
@@ -56,7 +56,7 @@ class Popup extends React.Component {
           description: "Для пополнения баланса вы будете премещены на сайт платёжной системы",
           content: (
             <div className="popup-deposit">
-              <div className="popup-deposit__actions" promo={`+${props.promoSum}% к пополнению`}>
+              <div className="popup-deposit__actions" promo={props.promo ? `+${props.promo}% к пополнению` : false}>
                 <input className="popup-deposit__input" defaultValue="100" />
                 <input className="popup-deposit__input" defaultValue="Промокод" />
                 <Button color="blue">Подтвердить</Button>
@@ -78,7 +78,7 @@ class Popup extends React.Component {
   }
   render() {
     const toggle = () => this.toggle();
-    const state = this.window(this.props.self.name, this.props.self.props, toggle);
+    const state = this.window(this.props.self.name, { ...this.props.self.props }, toggle);
     return (
       <div className={this.props.self.show ? "popup popup--show" : "popup"}>
         <div className="popup__cover" onClick={toggle}></div>

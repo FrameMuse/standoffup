@@ -5,7 +5,7 @@ const POPUP_TOGGLE = "POPUP/TOGGLE";
 
 // Reducer
 
-const popup = (current = { name: "deposit", props: { events: [] }, show: true }, dispatch) => {
+const popup = (current = { name: "deposit", props: { events: [] }, show: false }, dispatch) => {
     switch (dispatch.type) {
         case POPUP_DEPLOY:
             return {
