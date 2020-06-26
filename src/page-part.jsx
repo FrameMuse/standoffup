@@ -2,7 +2,10 @@ import React from "react";
 import { Switch, Route, NavLink } from "react-router-dom";
 import Home from "./pages/home";
 import Support from "./pages/support";
-import FAQ from "./pages/faq";
+import FAQPage from "./pages/faq";
+import Terms from "./pages/terms";
+import ProfileAnother from "./pages/profile_another";
+import Profile from "./pages/profile";
 class PagePart extends React.Component {
   render() {
     return (
@@ -14,8 +17,17 @@ class PagePart extends React.Component {
           <Route exact path="/support">
             <Support />
           </Route>
-          <Route path="/faq">
-            {/* <FAQ /> */}
+          <Route exact path="/faq">
+            <FAQPage />
+          </Route>
+          <Route exact path="/terms">
+            <Terms />
+          </Route>
+          <Route exact path="/profile">
+            <Profile />
+          </Route>
+          <Route exact path="/profile_another">
+            <ProfileAnother />
           </Route>
         </Switch>
         <footer>

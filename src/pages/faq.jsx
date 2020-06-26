@@ -1,15 +1,10 @@
 import React from "react";
-import { connect } from "react-redux";
 import { FAQ } from "../components";
-
-const mapStateToProps = state => ({
-  // name: state.name,
-});
 
 class FAQPage extends React.Component {
   render() {
     return (
-      <React.Component>
+      <React.Fragment>
         <div className="part-part__title">Часто задаваемые вопросы</div>
         <div className="part-part__content">
           <FAQ>
@@ -32,9 +27,9 @@ class FAQPage extends React.Component {
             </FAQ.clause>
           </FAQ>
         </div>
-      </React.Component>
+      </React.Fragment>
     )
   }
 }
 
-export default connect(mapStateToProps)(FAQPage);
+export default FAQPage

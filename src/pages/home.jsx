@@ -3,12 +3,12 @@ import { connect } from "react-redux";
 import { Column, Price, Button } from "../components";
 
 const Hash = ({ color = "myGlass", children = "13.51" }) => <div className="game-live-bets__bet" style={{ "--color": `var(--color-${color})` }}>{children}x</div>;
-const Weapons = ({ list }) => {
-  const extended = list.length > 3;
+export const Weapons = ({ list, cut = 3 }) => {
+  const extended = list.length > cut;
   return (
     <div className="game-matches__weapons">
-      {(extended ? list.slice(0, 3) : list).map((source, index) => <img src={source} key={"game-matches__weapon_" + index} alt="weapon" className="game-matches__weapon" />)}
-      {extended ? <div className="game-matches__weapons-count">+{list.length - 3}</div> : false}
+      {(extended ? list.slice(0, cut) : list).map((source, index) => <img src={source} key={"game-matches__weapon_" + index} alt="weapon" className="game-matches__weapon" />)}
+      {extended ? <div className="game-matches__weapons-count">+{list.length - cut}</div> : false}
     </div>
   );
 };

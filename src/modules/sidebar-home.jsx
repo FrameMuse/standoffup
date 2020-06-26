@@ -18,10 +18,11 @@ class SidebarHome extends React.Component {
     const weapon_picked = weapons.filter(weapon => weapon.picked || allPicked);
     const atLeastChoosen = weapon_picked.length;
     const pickedTotal = weapon_picked.reduce((prev, weaponCurr) => prev + weaponCurr.price, 0);
+    const state = window.location.href.split("/")[3] === "";
     const pickWeapon = index => this.props.dispatch(toggleItem(index));
     const pickAll = _ => this.props.dispatch(toggleAll());
     return (
-      <div className="sidebar-home">
+      <div className={"sidebar-home" + (!state ? " hidden" : "")}>
         <div className="topbar">
           <Logo />
           <Panel />

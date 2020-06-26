@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Price } from "../components";
-import { NavLink } from "react-router-dom";
+import { Price, Logo, Panel } from "../components";
+import { NavLink, Route, Switch } from "react-router-dom";
 
 const mapStateToProps = state => ({
   user: state.user
@@ -12,8 +12,17 @@ class Header extends React.Component {
     const { username, avatar, balance } = this.props.user;
     return (
       <div className="topbar">
+        <Switch>
+          <Route exact path="/"></Route>
+          <Route>
+            <div className="topbar__somethong">
+              <Logo />
+              <Panel />
+            </div>
+          </Route>
+        </Switch>
         <nav className="topbar-menu">
-          <NavLink to="/" className="topbar-menu__link" activeClassName="topbar-menu__link--active">
+          <NavLink exact to="/" className="topbar-menu__link" activeClassName="topbar-menu__link--active">
             <span className="topbar-menu__link--icon icon__home"></span>
             <span className="topbar-menu__link--text">Главная</span>
           </NavLink>
@@ -27,9 +36,12 @@ class Header extends React.Component {
           </NavLink>
         </nav>
         <div className="topbar-profile">
-          <div className="topbar-profile__username">{username}</div>
-          <img src={avatar} alt="avatar" className="topbar-profile__avatar" />
-          <div className="topbar-profile__balance"><Price>{balance}</Price></div>
+          <div className="flex aligned">
+            <div className="topbar-profile__username">{username}</div>
+            <img src={avatar} alt="avatar" className="topbar-profile__avatar" />
+            <div className="topbar-profile__balance"><Price>{balance}</Price></div>
+            <NavLink className="ghost" to="/profile" activeClassName="" />
+          </div>
           <button className="button button--green">
             <span className="button__text">Пополнить</span>
             <span className="button__icon icon__dollar"></span>
