@@ -32,9 +32,9 @@ class Monitor extends React.Component {
     this.stateDefault = this.state;
   }
   async start(prefs = {}) {
-    for await (let state of gameGenerator({ ...this.state, ...prefs })) {
+    /*for await (let state of gameGenerator({  ...this.state, ...prefs })) {
       this.setState(state);
-    }
+    }*/
   }
   clear() {
     this.setState(this.stateDefault);
