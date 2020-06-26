@@ -56,7 +56,7 @@ class Popup extends React.Component {
           description: "Для пополнения баланса вы будете премещены на сайт платёжной системы",
           content: (
             <div className="popup-deposit">
-              <div className="popup-deposit__actions" promo={props.promo ? `+${props.promo}% к пополнению` : false}>
+              <div className="popup-deposit__actions" promo={props.promo ? `+${props.promo}% к пополнению` : "false"}>
                 <input className="popup-deposit__input" defaultValue="100" />
                 <input className="popup-deposit__input" defaultValue="Промокод" />
                 <Button color="blue">Подтвердить</Button>

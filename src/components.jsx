@@ -11,7 +11,7 @@ export const Logo = ({ mobile }) => {
     return (
         <div className="topbar-logo">
             <span className="topbar-logo__icon"></span>
-            {mobile ? <span className="topbar-logo__text">standoffup</span> : <div className="topbar-menu-trigger-icon" onClick={toggleMenu}></div>}
+            {!mobile ? <span className="topbar-logo__text">standoffup</span> : <div className="topbar-menu-trigger-icon" onClick={toggleMenu}></div>}
             <Link to="/" className="ghost" />
         </div>
     );

@@ -838,6 +838,7 @@ standoffup-body {
     align-content: baseline;
     row-gap: 2em;
     padding-left: 1.5em;
+    width: inherit;
     height: calc(100vh - 24.125em);
     overflow: auto;
 }
@@ -919,6 +920,7 @@ standoffup-body {
     display: grid;
     padding: 1.5em;
     padding-bottom: unset;
+    width: inherit;
 }
 
 .game-setup {
@@ -1665,6 +1667,7 @@ standoffup-body {
     page-part {
         height: auto;
         overflow: unset;
+        width: 100vw;
     }
     .sidebar-home .topbar {
         display: none;

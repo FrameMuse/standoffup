@@ -20,12 +20,12 @@ class Header extends React.Component {
           <Route exact path="/"></Route>
           <Route>
             <div className="topbar__somethong">
-              <Logo />
+              <Logo mobile={mobile} />
               <Panel />
             </div>
           </Route>
         </Switch>
-        {mobile ? <Logo /> : false}
+        {mobile ? <Logo mobile={mobile} /> : false}
         <nav className="topbar-menu">
           <NavLink exact to="/" className="topbar-menu__link" activeClassName="topbar-menu__link--active">
             <span className="topbar-menu__link--icon icon__home"></span>
