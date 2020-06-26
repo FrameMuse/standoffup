@@ -19,26 +19,48 @@ import Side from "./side";
 import Chat from "./chat";
 import PagePart from "./page-part.jsx";
 import Header from "./modules/header";
+import Popup from "./modules/popup";
+import MobileMenu from "./modules/mobile_menu";
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(rootReducer, composeEnhancer(applyMiddleware(...[thunk])));
 
+const getDeviceType = () => {
+  const width = window.outerWidth;
+  const mobileWidth = 560;
+
+  document.getElementById("viewport").content = `width=${width > mobileWidth ? 1560 : mobileWidth}, user-scalable=no`;
+
+  store.dispatch({
+    type: "DEVICES/UPDATE",
+    devices: {
+      desktop: width > mobileWidth,
+      mobile: width <= mobileWidth
+    }
+  });
+}
+
+getDeviceType();
+
+window.addEventListener("resize", () => getDeviceType());
+
+
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
-      <standoffup>
-        <Side />
-        <standoffup-body>
-          <header>
-            <Header />
-          </header>
-          <main>
-            <PagePart />
-            <Chat />
-          </main>
-        </standoffup-body>
-      </standoffup>
+      <Side />
+      <standoffup-body>
+        <header>
+          <Header />
+        </header>
+        <main>
+          <PagePart />
+          <Chat />
+        </main>
+      </standoffup-body>
+      <Popup />
+      <MobileMenu />
     </BrowserRouter>
   </Provider>,
   document.querySelector("standoffup")

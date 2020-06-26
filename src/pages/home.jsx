@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Column, Price, Button } from "../components";
+import Monitor from "../modules/monitor";
 
 const Hash = ({ color = "myGlass", children = "13.51" }) => <div className="game-live-bets__bet" style={{ "--color": `var(--color-${color})` }}>{children}x</div>;
 export const Weapons = ({ list, cut = 3 }) => {
@@ -44,6 +45,7 @@ const Match = ({ data }) => {
 };
 const mapStateToProps = state => ({
   game: state.game,
+  devices: state.devices,
 });
 
 class Home extends React.Component {
@@ -56,10 +58,15 @@ class Home extends React.Component {
   render() {
     const game = this.props.game;
     const weapon = this.props.game.weapon;
+    const mobile = this.props.devices.mobile;
     const chooseOption = index => this.setState({ ...this.state, chosen: index });
     return (
       <React.Fragment>
         <div className="game">
+          {mobile ? <Monitor /> : false}
+          {mobile ? <div className="game-live-bets">
+            {game.hashes.map((hash, index) => <Hash key={"hash_" + index} color={hash.color}>{hash.value}</Hash>)}
+          </div> : false}
           <div className="game-setup">
             <div className="game-setup-weapon">
               <img src={weapon.source} alt="gun" className="game-setup-weapon__image" />
@@ -80,7 +87,7 @@ class Home extends React.Component {
             </div>
           </div>
           <div className="game-info">
-            <div className="game-info__title">Статистика раунда</div>
+            {!mobile ? <div className="game-info__title">Статистика раунда</div> : false}
             <Column icon="person">
               <span>{game.stats.players}</span>
               <span>Игроки</span>
@@ -94,9 +101,9 @@ class Home extends React.Component {
               <span>Скины</span>
             </Column>
           </div>
-          <div className="game-live-bets">
+          {!mobile ? <div className="game-live-bets">
             {game.hashes.map((hash, index) => <Hash key={"hash_" + index} color={hash.color}>{hash.value}</Hash>)}
-          </div>
+          </div> : false}
           <div className="game-matches">
             {game.matches.map((match, index) => <Match key={"match_" + index} data={match} />)}
           </div>

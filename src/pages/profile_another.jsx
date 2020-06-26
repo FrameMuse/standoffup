@@ -41,16 +41,18 @@ class ProfileAnother extends React.Component {
               <a href="https://vk.com/georgiymolchanov" className="profile-another__link">Профиль ВК</a>
             </div>
           </div>
-          <table className="profile-table">
-            <tr>
-              <td>ID раунда</td>
-              <td>Ставка</td>
-              <td>Предметы</td>
-              <td>Выигрыш</td>
-              <td>Дата</td>
-            </tr>
-            {Matches.map(match => <Match won={match.won} date={match.index} key={678909 + match.index} weapons={weaponsArray} />)}
-          </table>
+          <div className="profile-asd">
+            <table className="profile-table">
+              <tr>
+                <td>ID раунда</td>
+                <td>Ставка</td>
+                <td>Предметы</td>
+                <td>Выигрыш</td>
+                <td>Дата</td>
+              </tr>
+              {Matches.map(match => <Match won={match.won} date={match.index} key={678909 + match.index} weapons={weaponsArray} />)}
+            </table>
+          </div>
         </div>
       </React.Fragment>
     )

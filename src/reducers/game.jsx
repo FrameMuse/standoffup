@@ -3,6 +3,7 @@
 const GAME_ADD_HASH = "GAME/ADD/HASH";
 const GAME_ADD_MATCH = "GAME/ADD/MATCH";
 const GAME_REMOVE_MATCH = "GAME/REMOVE/MATCH";
+const MOBILE_MENU = "MOBILE_MENU/TOGGLE";
 
 // Types
 
@@ -34,7 +35,8 @@ const currentDefault = {
         source: "/assets/img/mp7.png",
         name: "MP7",
         alias: "2 Years Red"
-    }
+    },
+    mobileMenu: false
 }
 
 // Reducer
@@ -50,6 +52,11 @@ const game = (current = currentDefault, dispatch) => {
         case GAME_REMOVE_MATCH:
             current.matches.splice(dispatch.key, 1);
             return { ...current };
+        case MOBILE_MENU:
+            return {
+                ...current,
+                mobileMenu: !current.mobileMenu
+            };
         default: return current;
     }
 };
@@ -69,6 +76,10 @@ export const addMatch = match => ({
 export const removeMatch = key => ({
     type: GAME_REMOVE_MATCH,
     key: key
+});
+
+export const toggleMobileMenu = () => ({
+    type: MOBILE_MENU
 });
 
 export default game;

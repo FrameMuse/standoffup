@@ -1,15 +1,17 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Price, Logo, Panel } from "../components";
+import { Price, Logo, Panel, Button } from "../components";
 import { NavLink, Route, Switch } from "react-router-dom";
 
 const mapStateToProps = state => ({
-  user: state.user
+  user: state.user,
+  devices: state.devices,
 });
 
 class Header extends React.Component {
   render() {
     const { username, avatar, balance } = this.props.user;
+    const mobile = this.props.devices.mobile;
     return (
       <div className="topbar">
         <Switch>
@@ -21,6 +23,7 @@ class Header extends React.Component {
             </div>
           </Route>
         </Switch>
+        {mobile ? <Logo /> : false}
         <nav className="topbar-menu">
           <NavLink exact to="/" className="topbar-menu__link" activeClassName="topbar-menu__link--active">
             <span className="topbar-menu__link--icon icon__home"></span>
@@ -35,21 +38,28 @@ class Header extends React.Component {
             <span className="topbar-menu__link--text">FAQ</span>
           </NavLink>
         </nav>
-        <div className="topbar-profile">
+        {mobile ? <div className="topbar-profile">
           <div className="flex aligned">
-            <div className="topbar-profile__username">{username}</div>
+            <Button color="green" icon="dollar">Пополнить</Button>
             <img src={avatar} alt="avatar" className="topbar-profile__avatar" />
-            <div className="topbar-profile__balance"><Price>{balance}</Price></div>
-            <NavLink className="ghost" to="/profile" activeClassName="" />
+            <div className="topbar-profile__column">
+              <div className="topbar-profile__username">{username}</div>
+              <div className="topbar-profile__balance"><Price>{balance}</Price></div>
+              <NavLink className="ghost" to="/profile" activeClassName="" />
+            </div>
           </div>
-          <button className="button button--green">
-            <span className="button__text">Пополнить</span>
-            <span className="button__icon icon__dollar"></span>
-          </button>
-          <div className="topbar-profile__exit">
-            <span className="icon__exit"></span>
-          </div>
-        </div>
+        </div> : <div className="topbar-profile">
+            <div className="flex aligned">
+              <div className="topbar-profile__username">{username}</div>
+              <img src={avatar} alt="avatar" className="topbar-profile__avatar" />
+              <div className="topbar-profile__balance"><Price>{balance}</Price></div>
+              <NavLink className="ghost" to="/profile" activeClassName="" />
+            </div>
+            <Button color="green" icon="dollar">Пополнить</Button>
+            <div className="topbar-profile__exit">
+              <span className="icon__exit"></span>
+            </div>
+          </div>}
       </div>
     );
   }

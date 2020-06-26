@@ -2,18 +2,20 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { switchLang } from "./reducers/lang";
+import { toggleItem, toggleAll } from "./reducers/inventory";
+import { toggleMobileMenu } from "./reducers/game";
 
-export class Logo extends React.Component {
-    render() {
-        return (
-            <div className="topbar-logo" href="/13">
-                <span className="topbar-logo__icon"></span>
-                <span className="topbar-logo__text">standoffup</span>
-                <Link to="/" className="ghost" />
-            </div>
-        )
-    }
-}
+export const Logo = ({ mobile }) => {
+    const dispatch = useDispatch();
+    const toggleMenu = () => dispatch(toggleMobileMenu());
+    return (
+        <div className="topbar-logo">
+            <span className="topbar-logo__icon"></span>
+            {mobile ? <span className="topbar-logo__text">standoffup</span> : <div className="topbar-menu-trigger-icon" onClick={toggleMenu}></div>}
+            <Link to="/" className="ghost" />
+        </div>
+    );
+};
 
 export const Panel = () => {
     const lang = useSelector(state => state.lang.list);
@@ -63,7 +65,7 @@ export class count {
     }
 }
 
-export const Price = ({ children, toFixed = 2 }) => {
+export const Price = ({ children = 0, toFixed = 2 }) => {
     const currency = useSelector(state => state.lang.list.currency);
     return <>{count.get(children, toFixed, currency)}</>;
 };
@@ -86,7 +88,7 @@ export const Weapon = ({ data = {}, picked, onClick }) => {
 };
 
 export const Button = ({ onClick, color, children, icon, note }) => (
-    <button className={color ? "button button--" + color : "button"}>
+    <button onClick={onClick} className={color ? "button button--" + color : "button"}>
         <span className="button__text">{children}</span>
         {icon ? <span className={"button__icon icon__" + icon}></span> : false}
         {note ? <span className="button__note">{note}</span> : false}
@@ -128,3 +130,48 @@ export class FAQ extends React.Component {
         );
     }
 }
+
+export const CompactAccount = () => {
+    const inventory = useSelector(state => state.inventory);
+    const lang = useSelector(state => state.lang.list);
+    const user = useSelector(state => state.user);
+    const dispatch = useDispatch();
+    
+    const weapons = inventory.weapons;
+    const allPicked = inventory.allPicked;
+    const weapon_picked = weapons.filter(weapon => weapon.picked || allPicked);
+    const atLeastChoosen = weapon_picked.length;
+    const pickedTotal = weapon_picked.reduce((prev, weaponCurr) => prev + weaponCurr.price, 0);
+    const pickWeapon = index => dispatch(toggleItem(index));
+    const pickAll = _ => dispatch(toggleAll());
+    return (
+        <div className="compact-account">
+            <div className="compact-account__details">
+                <Column>
+                    <span><Price>{user.balance}</Price></span>
+                    <span>{lang.sidebar.inventory_info.balance}</span>
+                </Column>
+                <Column>
+                    <span><Price>{pickedTotal}</Price></span>
+                    <span>{lang.sidebar.inventory_info.selected}</span>
+                </Column>
+                <Column>
+                    <span>{lang.sidebar.inventory_info.all}</span>
+                    <div>
+                        <span>{lang.sidebar.inventory_info.selectAll}</span>
+                        <Checkbox onChange={() => pickAll()} />
+                    </div>
+                </Column>
+            </div>
+            <div className="compact-account__inventory">
+                <div className="compact-account__inventory--inner">
+                    {weapons.map((weapon, index) => <Weapon data={weapon} picked={weapons[index]["picked"] || allPicked} key={"inventory_weapon_" + index} onClick={() => pickWeapon(index)} />)}
+                </div>
+                <div className={"compact-account__buttons" + (!atLeastChoosen ? " hidden" : "")}>
+                    <Button color="blue" icon="refresh">Обменять</Button>
+                    <Button color="green" icon="chevron-down-double">Получить</Button>
+                </div>
+            </div>
+        </div>
+    );
+};

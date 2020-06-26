@@ -2,12 +2,25 @@ import React from "react";
 
 const delay = async ms => new Promise(resolve => setTimeout(resolve, ms));
 
+async function* gameGenerator(state) {
+  for (let index = 0; index < state.itters; index++) {
+    await delay(state.delay);
+    yield state = {
+      ...state,
+      hash: state.hash + state.accel,
+      delay: state.delay > state.paceDelay ? index % state.each === 0 ? state.delay - state.paceDelay : state.delay : state.paceDelay,
+      axes: state.hash >= state.axes ? state.axes * 2 : state.axes
+    };
+  }
+}
+
+
 class Monitor extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      hash: 0,
+      hash: 1.25,
       itters: 17 * 100,
       accel: 0.01,
       delay: 1000,
@@ -18,23 +31,9 @@ class Monitor extends React.Component {
 
     this.stateDefault = this.state;
   }
-  async start() {
-    var state = this.state;
-    async function* asyncGenerator() {
-      for (let index = 0; index < state.itters; index++) {
-        state = {
-          ...state,
-          hash: state.hash + state.accel,
-          delay: state.delay > state.paceDelay ? index % state.each === 0 ? state.delay - state.paceDelay : state.delay : state.paceDelay,
-          axes: state.hash >= state.axes ? state.axes * 2 : state.axes,
-        };
-        await delay(state.delay);
-        yield state;
-      }
-    }
-    
-    for await (let state of asyncGenerator()) {
-      this.setState({ ...state });
+  async start(prefs = {}) {
+    for await (let state of gameGenerator({ ...this.state, ...prefs })) {
+      this.setState(state);
     }
   }
   clear() {

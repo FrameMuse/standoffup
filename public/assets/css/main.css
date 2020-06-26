@@ -135,7 +135,7 @@ a.ghost {
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 12;
+    z-index: 3;
     border-bottom-color: transparent;
 }
 
@@ -165,7 +165,12 @@ hr {
 }
 
 .marked {
-    color: #ffc500;
+    color: var(--color-yellow);
+    text-decoration: underline;
+}
+
+.unmarked {
+    color: white;
 }
 
 /* Icons */
@@ -665,16 +670,19 @@ p.part-part__content {
     align-items: center;
     justify-content: space-between;
     padding: 1.25em 1.5em;
-    background: var(--color-whitePurple);
+    background: #1c2d4e;
     border-radius: 0.5em;
+    color: var(--color-lighterPurple);
 }
 
 .button--blue {
     background: var(--color-blue);
+    color: white;
 }
 
 .button--green {
     background: var(--color-green);
+    color: white;
 }
 
 .button__text {
@@ -1062,6 +1070,7 @@ standoffup-body {
 
 .game-matches {
     display: grid;
+    align-content: baseline;
     row-gap: 0.25em;
     height: calc(100vh - 25em);
     overflow: auto;
@@ -1345,6 +1354,7 @@ standoffup-body {
     padding: 2em;
     background: var(--color-nice);
     border-radius: 1em;
+    cursor: pointer;
 }
 
 .change-avatar__add--icon {
@@ -1356,7 +1366,8 @@ standoffup-body {
 .change-avatar__text {
     line-height: 1.5;
     vertical-align: -webkit-baseline-middle;
-    margin-left: 1em;
+    margin-left: 1.5em;
+    color: var(--color-lighterPurple);
 }
 
 .change-avatar__button {
@@ -1366,6 +1377,7 @@ standoffup-body {
     border-radius: 0.5rem;
     color: var(--color-lighterPurple);
     font-size: 1.125em;
+    font-weight: 500;
 }
 
 .change-avatar__content {
@@ -1460,4 +1472,332 @@ standoffup-body {
 .profile-switcher__route--active {
     border-bottom: 2px solid var(--color-blue);
     color: white;
+}
+
+/* Popup */
+
+.popup, .popup__cover {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: none;
+    z-index: 6;
+}
+
+.popup {
+    align-items: center;
+    justify-content: center;
+}
+
+.popup--show {
+    display: flex;
+}
+
+.popup--show .popup__cover {
+    display: unset;
+}
+
+.popup__cover {
+    background: rgba(6, 14, 32, 0.75);
+    cursor: pointer;
+}
+
+.popup-window {
+    display: grid;
+    row-gap: 2em;
+    background: var(--color-whitePurple);
+    border-radius: 1.25em;
+    width: 40em;
+    z-index: 7;
+    overflow: hidden;
+}
+
+.popup-window__header {
+    display: flex;
+    align-items: center;
+    padding: 2.5em 2em;
+    background: var(--color-dark-0);
+}
+
+.popup-window__title {
+    font-size: 1.125em;
+    font-weight: 500;
+}
+
+.popup-window__close {
+    margin-left: auto;
+    background-image: url("/assets/img/icons/cross.png");
+    cursor: pointer;
+}
+
+.popup-window__content {
+    padding: 0 2em;
+    background: var(--color-whitePurple);
+}
+
+.popup-window__description {
+    padding: 0 2em;
+    color: var(--color-lighterPurple);
+    max-width: 41em;
+    line-height: 1.5;
+}
+
+.popup-window__help {
+    padding: 0 2em 2.5em;
+}
+
+.popup-buttons {
+    display: flex;
+}
+
+.popup-buttons>* {
+    margin-right: 0.5em;
+}
+
+.change-avatar__add>input {
+    display: none;
+}
+
+.popup-deposit {
+    display: grid;
+    row-gap: 1em;
+}
+
+.popup-deposit__actions {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+}
+
+.popup-deposit__actions[promo] {
+    padding-bottom: 2em;
+}
+
+.popup-deposit__actions[promo]::after {
+    content: attr(promo);
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    text-align: center;
+    color: var(--color-green);
+}
+
+.popup-deposit__input {
+    padding: 1.25em 1em;
+    background: var(--color-dark-0);
+    border-radius: 0.5em;
+    font-size: 1.125em;
+    color: var(--color-purple);
+    width: 10em;
+    cursor: text;
+}
+
+.popup-deposit__note {
+    margin-top: 1em;
+}
+
+.popup-deposit__payes {
+    margin: 1em 0 2em;
+    width: 100%;
+}
+
+/* Mobile */
+
+@media only screen and (max-width: 560px) {
+    standoffup {
+        display: grid;
+    }
+    .sidebar-home {
+        width: 100vw;
+        height: auto;
+        overflow: auto;
+        border: unset;
+        font-size: 16px;
+    }
+    .chat {
+        display: none;
+    }
+    .game-setup-weapon {
+        display: none;
+    }
+    .game-setup-bet {
+        width: 100%;
+    }
+    .game-setup-bet__actions {
+        display: grid;
+    }
+    .game-setup-bet__auto-draw {
+        width: 100%;
+        margin-bottom: 0.5em;
+        font-size: 1.25em;
+    }
+    .game-matches {
+        height: auto;
+    }
+    .game-matches__weapons {
+        display: none;
+    }
+    .game-info__title {
+        display: none;
+    }
+    .game-info {
+        background: transparent;
+        padding: 0;
+        margin: 1em 0;
+        font-size: 16px;
+    }
+    .game-info .column {
+        padding: 1.5em;
+        margin-left: 0.5em;
+        background: var(--color-whitePurple);
+        border-radius: 0.5em;
+        flex: 1;
+    }
+    .column__icon {
+        display: none;
+    }
+    .column--0 .column__anotation {
+        margin: unset;
+    }
+    page-part {
+        height: auto;
+        overflow: unset;
+    }
+    .sidebar-home .topbar {
+        display: none;
+    }
+    .topbar-menu {
+        display: none;
+    }
+    .sidebar-home::before {
+        display: none;
+    }
+    .monitor {
+        margin: unset;
+    }
+    .compact-account__details {
+        background: #10192c;
+    }
+    .annouce-event {
+        display: none;
+    }
+    .topbar__somethong {
+        display: none;
+    }
+    .game-setup, .game-live-bets, .monitor {
+        font-size: 16px;
+    }
+    .game-setup-bet__option {
+        padding: 1em 1.5em;
+    }
+    .game-info .column:first-child {
+        margin: 0;
+    }
+    .game-matches__match {
+        font-size: 14px;
+    }
+    .topbar-profile__avatar {
+        margin: 0;
+    }
+    .topbar-profile__column {
+        display: grid;
+        row-gap: 0.5rem;
+        margin-left: 1.5rem;
+        font-size: 1.125em;
+    }
+    .topbar-profile {
+        margin-left: auto;
+    }
+    .topbar-menu-trigger-icon {
+        background-image: url("/assets/img/icons/menu.png");
+        width: 2.5em;
+        height: 2.5em;
+        margin-left: 1em;
+        z-index: 4;
+    }
+    .topbar-logo__icon {
+        width: 4.5em;
+        height: 4.5em;
+    }
+    .topbar-profile .button {
+        margin: unset;
+        margin-right: 1em;
+    }
+    footer {
+        font-size: 1.25em;
+    }
+    .mobile-menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 7;
+        display: grid;
+        row-gap: 5em;
+        align-content: baseline;
+        background: rgba(13, 20, 35, 0.95);
+        padding: 2.5em 2em;
+    }
+    .topbar-panel__button {
+        background: #10192c;
+        font-size: 1.25em;
+        color: #2a4275;
+    }
+    .mobile-menu__top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .mobile-menu__top .topbar-panel {
+        margin: unset;
+    }
+    .mobile-menu__close {
+        background-image: url("/assets/img/icons/cross.png");
+        width: 2em;
+        height: 2em;
+    }
+    .mobile-menu__menu {
+        display: grid;
+        row-gap: 2em;
+    }
+    .mobile-menu__link {
+        font-size: 1.5em;
+    }
+    .mobile-menu__profile .button {
+        width: 14em;
+    }
+    .profile-another {
+        display: grid;
+        row-gap: 1em;
+        width: 100vw;
+    }
+    .profile-content {
+        overflow: auto;
+        width: 100%;
+    }
+    .profile-table {
+        flex: unset;
+        flex-shrink: 0;
+        white-space: nowrap;
+        margin: unset;
+        overflow: auto;
+    }
+    .profile-another__box {
+        width: calc(100vw - 3em);
+    }
+    .profile-another__container {
+        font-size: 1.25em;
+        width: 100%;
+    }
+    .referals__progress--text {
+        width: auto;
+    }
+    .profile-asd {
+        width: 100%;
+        overflow: auto;
+    }
 }
