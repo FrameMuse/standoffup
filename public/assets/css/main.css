@@ -1818,4 +1818,7 @@ standoffup-body {
         overflow: auto;
         margin: unset;
     }
+    .game-live-bets {
+        width: auto;
+    }
 }
