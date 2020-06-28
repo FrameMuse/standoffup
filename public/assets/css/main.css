@@ -520,6 +520,7 @@ p.part-part__content {
 .compact-account__buttons {
     display: flex;
     box-shadow: 0 -2em 2em -1em rgba(0, 0, 0, 0.5);
+    margin-top: 1em;
 }
 
 .compact-account__buttons>* {
@@ -1820,5 +1821,12 @@ standoffup-body {
     }
     .game-live-bets {
         width: auto;
+    }
+    .compact-account {
+        font-size: 1.25em;
+        margin-top: 1em;
+    }
+    .compact-account__inventory {
+        font-size: 1.125em;
     }
 }
