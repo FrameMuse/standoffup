@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Button, Price } from "../components";
-import { deployPopup, togglePopup } from "../reducers/popup";
+import { togglePopup } from "../reducers/popup";
 
 const mapStateToProps = state => ({
   self: state.popup,

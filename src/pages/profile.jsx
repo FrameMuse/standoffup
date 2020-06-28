@@ -4,10 +4,10 @@ import { Weapons } from "../pages/home";
 import { connect } from "react-redux";
 
 const weaponsArray = ["/assets/img/mp7.png", "/assets/img/mp7.png", "/assets/img/mp7.png", "/assets/img/mp7.png"];
-const Match = ({ key, weapons, props = { bet: 123.12, hash: 2.97, sum: 167.41, weaponImage: "/assets/img/mp7.png" }, won = true, date }) => {
+const Match = ({ index, weapons, props = { bet: 123.12, hash: 2.97, sum: 167.41, weaponImage: "/assets/img/mp7.png" }, won = true, date }) => {
   return (
     <tr>
-      <td>#{key}</td>
+      <td>#{index}</td>
       <td>
         <div className="game-matches__bet"><Price>{props.bet}</Price></div>
       </td>
@@ -85,14 +85,18 @@ class Profile extends React.Component {
               <div className="profile-switcher__route">История выводов</div>
             </div>
             <table className="profile-table">
-              <tr>
-                <td>ID раунда</td>
-                <td>Ставка</td>
-                <td>Предметы</td>
-                <td>Выигрыш</td>
-                <td>Дата</td>
-              </tr>
-              {Matches.map(match => <Match won={match.won} date={match.index} key={678909 + match.index} weapons={weaponsArray} />)}
+              <thead>
+                <tr>
+                  <td>ID раунда</td>
+                  <td>Ставка</td>
+                  <td>Предметы</td>
+                  <td>Выигрыш</td>
+                  <td>Дата</td>
+                </tr>
+              </thead>
+              <tbody>
+                {Matches.map(match => <Match won={match.won} date={match.index} index={678909 + match.index} key={678909 + match.index} weapons={weaponsArray} />)}
+              </tbody>
             </table>
           </div>
         </div>

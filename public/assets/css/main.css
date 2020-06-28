@@ -221,7 +221,7 @@ hr {
     align-items: center;
 }
 
-standoffup {
+standoffup, #root {
     display: flex;
     width: 100vw;
 }
@@ -424,6 +424,7 @@ p.part-part__content {
 /* Monitor */
 
 .monitor {
+    display: grid;
     margin: 2em 0;
     width: 100%;
     height: 18em;
@@ -434,9 +435,11 @@ p.part-part__content {
 }
 
 .monitor__axes {
+    position: absolute;
     display: flex;
     justify-content: space-between;
     padding: 1.75em 2em;
+    width: 100%;
     height: 100%;
 }
 
@@ -453,14 +456,9 @@ p.part-part__content {
 }
 
 .monitor__Bnumber {
-    position: absolute;
-    top: 7.5rem;
-    left: 0;
-    right: 0;
     margin: auto;
     font-size: 3em;
     font-weight: 500;
-    text-align: center;
     z-index: 1;
 }
 
@@ -888,6 +886,7 @@ standoffup-body {
     background: var(--color-nice);
     border-radius: 0.25em 0.75em 0.75em 0.75em;
     color: var(--color-lighterPurple);
+    word-break: break-word;
 }
 
 .chat-bottom {
@@ -1272,21 +1271,21 @@ standoffup-body {
     width: 100%;
 }
 
-.profile-table>tr>td {
+.profile-table tr>td {
     padding: 1.25em;
     background: var(--color-whitePurple);
 }
 
-.profile-table>tr>td:first-child {
+.profile-table tr>td:first-child {
     border-radius: 0.5em 0 0 0.5em;
 }
 
-.profile-table>tr>td:last-child {
+.profile-table tr>td:last-child {
     color: var(--color-purple);
     border-radius: 0 0.5em 0.5em 0;
 }
 
-.profile-table>tr:first-child>td {
+.profile-table thead>tr>td {
     background: transparent;
     padding: 1.25rem;
     font-size: 1.125em;
@@ -1455,7 +1454,6 @@ standoffup-body {
 
 .profile-switcher {
     display: flex;
-    margin-left: 2em;
     margin-bottom: 1em;
 }
 
@@ -1619,7 +1617,7 @@ standoffup-body {
 /* Mobile */
 
 @media only screen and (max-width: 560px) {
-    standoffup {
+    standoffup, #root {
         display: grid;
     }
     .sidebar-home {
@@ -1690,6 +1688,7 @@ standoffup-body {
     }
     .monitor {
         margin: unset;
+        background: #0b111f url(/assets/img/monitor.png) no-repeat center 40%/120%;
     }
     .compact-account__details {
         background: #10192c;
