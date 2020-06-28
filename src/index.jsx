@@ -30,7 +30,7 @@ const getDeviceType = () => {
   const width = window.outerWidth;
   const mobileWidth = 560;
 
-  document.getElementById("viewport").content = `width=${width > mobileWidth ? 1560 : mobileWidth}, user-scalable=no`;
+  document.getElementById("viewport").content = `width=${width > mobileWidth ? 1560 : mobileWidth}, initial-scale=1`;
 
   store.dispatch({
     type: "DEVICES/UPDATE",

@@ -1620,6 +1620,9 @@ standoffup-body {
     standoffup, #root {
         display: grid;
     }
+    standoffup-body {
+        max-height: auto;
+    }
     .sidebar-home {
         width: 100vw;
         height: auto;
