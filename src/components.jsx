@@ -172,6 +172,32 @@ export const CompactAccount = () => {
                     <Button color="green" icon="chevron-down-double">Получить</Button>
                 </div>
             </div>
+            <div className="compact-picking">
+                <div className="compact-picking__title">
+                    <span className="compact-picking--title">Выберите скины</span>
+                    <span className="compact-picking--icon"></span>
+                </div>
+                <div className="compact-picking__info">
+                    <div className="compact-picking__column">
+                        <div className="compact-picking__row">
+                            <span className="compact-picking__row--0">отдаёте</span>
+                            <span className="compact-picking__row--1"><Price>175.21</Price></span>
+                        </div>
+                        <div className="compact-picking__row">
+                            <span className="compact-picking__row--0">получаете</span>
+                            <span className="compact-picking__row--1"><Price>5675.21</Price></span>
+                        </div>
+                    </div>
+                    <Button color="blue">Подтвердить</Button>
+                </div>
+                <div className="compact-picking__options">
+                    <input className="compact-picking__input" placeholder="Название скина" />
+                    <input className="compact-picking__input" placeholder="Цена" />
+                </div>
+                <div className="compact-picking__inventory">
+                    {weapons.map((weapon, index) => <Weapon data={weapon} picked={weapons[index]["picked"] || allPicked} key={"inventory_weapon_hz_" + index} onClick={() => pickWeapon(index)} />)}
+                </div>
+            </div>
         </div>
     );
 };

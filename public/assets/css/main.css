@@ -905,10 +905,12 @@ standoffup-body {
 
 .chat-send__input {
     color: var(--color-lighterPurple);
+    flex: 1;
 }
 
 .chat-send__submit {
     padding: 0.75em;
+    margin-left: 1em;
     background: var(--color-blue);
     border-radius: 0.5em;
     cursor: pointer;
@@ -1307,7 +1309,7 @@ standoffup-body {
 .topbar__somethong {
     display: flex;
     align-items: center;
-    width: 30em;
+    width: calc(30em + 1px);
 }
 
 .topbar__somethong~.topbar-menu {
@@ -1615,6 +1617,97 @@ standoffup-body {
 .profile-asd {
     flex: 1;
     margin-left: 1.5em;
+}
+
+/* Compact Picking */
+
+.compact-picking {
+    position: fixed;
+    top: 25vh;
+    left: 35em;
+    bottom: 15vh;
+    display: grid;
+    width: 30em;
+    padding: 1.5em;
+    background: var(--color-dark-0);
+    border-radius: 0.5em;
+    z-index: 1;
+}
+
+.compact-picking__title {
+    display: flex;
+    align-items: center;
+    margin-top: 1.5em;
+}
+
+.compact-picking--title {
+    font-size: 1.125em;
+    font-weight: 500;
+    color: var(--color-lighterPurple);
+}
+
+.compact-picking--icon {
+    background-image: url("/assets/img/icons/cross.png");
+    margin-left: auto;
+    cursor: pointer;
+}
+
+.compact-picking__info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1em;
+}
+
+.compact-picking__column {
+    display: grid;
+    row-gap: 0.5em;
+}
+
+.compact-picking__row {
+    display: flex;
+    align-items: center;
+}
+
+.compact-picking__row--0 {
+    font-size: 1em;
+    color: #2a4275;
+    width: 7em;
+}
+
+.compact-picking__row--1 {
+    font-size: 1.125em;
+}
+
+.compact-picking__options {
+    display: flex;
+    margin-top: 1em;
+}
+
+.compact-picking__input {
+    padding: 1.125em 1em;
+    background: #0f172a;
+    border-radius: 0.5em;
+    color: var(--color-purple);
+    cursor: text;
+}
+
+.compact-picking__input:first-child {
+    flex: 1;
+    margin-right: 1em
+}
+
+.compact-picking__input:last-child {
+    width: 25%;
+}
+
+.compact-picking__inventory {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5em;
+    margin-top: 2em;
+    /* height: 100%; */
+    overflow: auto;
 }
 
 /* Mobile */
