@@ -475,6 +475,11 @@ p.part-part__content {
     transition: 0.3s linear height;
 }
 
+.monitor__indicator--stunned {
+    background: linear-gradient(rgba(204, 5, 5, 0.5), transparent 100%);
+    border-top: 2px solid var(--color-red);
+}
+
 /* Compact Account */
 
 .compact-account {
@@ -1263,9 +1268,8 @@ standoffup-body {
 /* Table */
 
 .profile-table {
-    margin-left: 2em;
     border-spacing: 0 0.25em;
-    flex: 1;
+    width: 100%;
 }
 
 .profile-table>tr>td {
@@ -1446,6 +1450,7 @@ standoffup-body {
 .profile-content {
     display: grid;
     flex: 1;
+    margin-left: 1.5em;
 }
 
 .profile-switcher {
@@ -1604,6 +1609,11 @@ standoffup-body {
 .popup-deposit__payes {
     margin: 1em 0 2em;
     width: 100%;
+}
+
+.profile-asd {
+    flex: 1;
+    margin-left: 1.5em;
 }
 
 /* Mobile */
@@ -1802,5 +1812,6 @@ standoffup-body {
     .profile-asd {
         width: 100%;
         overflow: auto;
+        margin: unset;
     }
 }

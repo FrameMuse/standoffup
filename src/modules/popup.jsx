@@ -8,22 +8,6 @@ const mapStateToProps = state => ({
 });
 
 class Popup extends React.Component {
-  constructor(props) {
-    super(props);
-
-    // this.state = {
-    //   show: true,
-    //   title: "Подтверждение продажи",
-    //   description: <>Вы действительно хотите продать этот предмет за <span className="unmarked">1</span> рубль?</>,
-    //   content: (events) => <div className="popup-buttons">
-    //     <Button color="blue" onClick={events[0]}>Да</Button>
-    //     <Button onClick={events[1]}>Нет</Button>
-    //   </div>,
-    //   showHelp: true
-    // };
-
-    window.asd = (n, a) => this.props.dispatch(deployPopup(n, a));
-  }
   window(name, props = { events: [], promo: 0 }, toggle) {
     switch (name) {
       case "sell":
@@ -56,7 +40,7 @@ class Popup extends React.Component {
           description: "Для пополнения баланса вы будете премещены на сайт платёжной системы",
           content: (
             <div className="popup-deposit">
-              <div className="popup-deposit__actions" promo={props.promo ? `+${props.promo}% к пополнению` : "false"}>
+              <div className="popup-deposit__actions" promo={props.promo ? `+${props.promo}% к пополнению` : undefined}>
                 <input className="popup-deposit__input" defaultValue="100" />
                 <input className="popup-deposit__input" defaultValue="Промокод" />
                 <Button color="blue">Подтвердить</Button>

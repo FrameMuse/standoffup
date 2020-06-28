@@ -40,7 +40,6 @@ class Profile extends React.Component {
       <React.Fragment>
         <div className="profile-another">
           <div className="profile-another__box">
-            
             <div className="profile-another__container">
               <img src={user.avatar} alt="avatar" className="profile-another__avatar" />
               <div className="profile-another__username">
