@@ -29,6 +29,7 @@ html {
 }
 
 body {
+    width: 100vw;
     margin: auto;
     background: var(--color-dark-2);
     font-size: inherit;
@@ -58,7 +59,7 @@ header {
 
 main {
     display: inline-flex;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 footer {
@@ -924,7 +925,7 @@ standoffup-body {
     display: grid;
     padding: 1.5em;
     padding-bottom: unset;
-    width: inherit;
+    width: 100vw;
 }
 
 .game-setup {
