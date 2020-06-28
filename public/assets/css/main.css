@@ -926,6 +926,7 @@ standoffup-body {
     padding: 1.5em;
     padding-bottom: unset;
     width: auto;
+    flex: 1;
 }
 
 .game-setup {
@@ -1661,7 +1662,7 @@ standoffup-body {
         background: transparent;
         padding: 0;
         margin: 1em 0;
-        font-size: 3.25vw;
+        font-size: 16px;
     }
     .game-info .column {
         padding: 1.5em;
@@ -1704,7 +1705,7 @@ standoffup-body {
         display: none;
     }
     .game-setup, .game-live-bets, .monitor {
-        font-size: 3.25vw;
+        font-size: 16px;
     }
     .game-setup-bet__option {
         padding: 1em 1.5em;
@@ -1713,7 +1714,7 @@ standoffup-body {
         margin: 0;
     }
     .game-matches__match {
-        font-size: 2.5vw;
+        font-size: 14px;
     }
     .topbar-profile__avatar {
         margin: 0;

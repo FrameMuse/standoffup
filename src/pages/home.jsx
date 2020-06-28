@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Column, Price, Button } from "../components";
+import { Column, Price, Button, CompactAccount } from "../components";
 import Monitor from "../modules/monitor";
 
 const Hash = ({ color = "myGlass", children = "13.51" }) => <div className="game-live-bets__bet" style={{ "--color": `var(--color-${color})` }}>{children}x</div>;
@@ -86,6 +86,7 @@ class Home extends React.Component {
               </div>
             </div>
           </div>
+          {mobile ? <CompactAccount /> : false}
           <div className="game-info">
             {!mobile ? <div className="game-info__title">Статистика раунда</div> : false}
             <Column icon="person">
