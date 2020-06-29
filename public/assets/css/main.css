@@ -363,6 +363,20 @@ p.part-part__content {
     background-image: url("/assets/img/icons/home.png");
 }
 
+.icon__bag {
+    background-image: url("/assets/img/icons/bag.png");
+}
+
+.icon__cross {
+    background-image: url("/assets/img/icons/cross_1.png");
+    width: 0.75em;
+    height: 0.75em;
+}
+
+.icon__check {
+    background-image: url("/assets/img/icons/check.png");
+}
+
 .icon__headphones {
     background-image: url("/assets/img/icons/headphones.png");
 }
@@ -668,6 +682,57 @@ p.part-part__content {
     font-size: 1.125em;
 }
 
+.weapon__wrap-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.weapon__ball {
+    display: grid;
+    width: 2.5em;
+    height: 2.5em;
+    background: #142038;
+    border-radius: 100%;
+}
+
+.weapon__ball--content {
+    margin: auto;
+}
+
+.weapon__ball--note {
+    position: absolute;
+    top: 0%;
+    left: calc(-50% - 0em);
+    padding: 1.25em 1.5em;
+    background: #142038;
+    border-radius: 0.5em;
+    color: var(--color-purple);
+    opacity: 0;
+    z-index: -1;
+    filter: drop-shadow(0px 19px 10.5px rgba(10, 16, 30, 0.34));
+    transition: 0.125s linear top, 0.125s linear opacity;
+}
+
+.weapon__ball--note::before {
+    content: "";
+    position: absolute;
+    left: 1.75em;
+    bottom: -0.75em;
+    display: block;
+    width: 0;
+    height: 0;
+    border-top: 0.75em solid #142038;
+    border-left: 0.75em solid transparent;
+    border-right: 0.75em solid transparent;
+}
+
+.weapon__ball:hover>.weapon__ball--note {
+    top: -200%;
+    opacity: 1;
+    z-index: 1;
+}
+
 /* Button */
 
 .button {
@@ -920,6 +985,75 @@ standoffup-body {
     background-image: url("/assets/img/icons/paper-plane.png");
     width: 1.5em;
     height: 1.5em;
+}
+
+/* Market */
+
+.page-market {
+    display: flex;
+    padding: 1.5em;
+}
+
+.page-market__side {
+    display: grid;
+    align-content: baseline;
+    row-gap: 1em;
+    width: 21em;
+}
+
+.page-market__input {
+    padding: 1.125em 1em;
+    background: #0b111f;
+    border-radius: 0.5em;
+    color: var(--color-purple);
+    cursor: text;
+}
+
+.page-market__side>input {
+    padding: 1.5em 1em;
+}
+
+.page-market__price {
+    display: flex;
+    justify-content: space-between;
+}
+
+.page-market__price>input {
+    width: 45%;
+    color: white;
+}
+
+.page-market__selector {
+    display: flex;
+    align-items: center;
+    padding-left: 1em;
+}
+
+.page-market__selector--text {
+    color: var(--color-purple);
+    margin-right: 1em;
+}
+
+.page-market__selector>.selector {
+    flex: 1;
+}
+
+.page-market__content {
+    display: grid;
+    align-content: baseline;
+    grid-template-columns: repeat(6, 1fr);
+    margin-left: 1.5em;
+    flex: 1;
+    gap: 0.75em;
+}
+
+.page-market__content>.weapon {
+    row-gap: 2.5em;
+    /* padding: 1.25em; */
+}
+
+.page-market__content>.weapon .weapon__image {
+    width: 6em;
 }
 
 /* Game */
@@ -1453,6 +1587,7 @@ standoffup-body {
 
 .profile-content {
     display: grid;
+    align-content: baseline;
     flex: 1;
     margin-left: 1.5em;
 }
@@ -1460,28 +1595,89 @@ standoffup-body {
 .profile-switcher {
     display: flex;
     margin-bottom: 1em;
+    border-bottom: 1px solid #16223c;
 }
 
 .profile-switcher__route {
     padding: 1.5rem 0;
-    border-bottom: 1px solid #16223c;
+    margin-right: 1.5rem;
+    border-bottom: 1px solid transparent;
     font-size: 1.5em;
     color: var(--color-purple);
-}
-
-.profile-switcher__route:last-child {
-    flex: 1;
-}
-
-.profile-switcher__route:last-child::before {
-    content: "";
-    display: inline-block;
-    width: 1.5em;
+    cursor: pointer;
 }
 
 .profile-switcher__route--active {
     border-bottom: 2px solid var(--color-blue);
     color: white;
+}
+
+.profile-weapons {
+    display: grid;
+    align-content: baseline;
+    grid-template-columns: repeat(6, 1fr);
+    flex: 1;
+    gap: 0.75em;
+}
+
+/* Selector */
+
+.selector {
+    cursor: pointer;
+}
+
+.selector__current {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 1rem;
+    background: #10192c;
+    border-radius: 0.5em;
+    font-size: 1.25em;
+}
+
+.selector__current::after {
+    content: "";
+    background: url("/assets/img/icons/chevron-down.png") no-repeat center/contain;
+    width: 0.75em;
+    height: 0.75em;
+    margin-left: 1em;
+    transition: 0.25s ease transform;
+}
+
+.selector--active .selector__current::after {
+    transform: rotate(180deg);
+}
+
+.selector__menu {
+    position: absolute;
+    top: 4.25em;
+    left: 0;
+    right: 0;
+    display: none;
+    padding: 0.75em 0;
+    background: #10192c;
+    border-radius: 0.5em;
+    max-height: 30vh;
+    overflow: auto;
+    z-index: 3;
+}
+
+.selector--active .selector__menu {
+    display: grid;
+    transform: scaleX(1);
+}
+
+.selector__option {
+    padding: 0.75rem 1rem;
+    font-size: 1.25em;
+    white-space: nowrap;
+    text-transform: lowercase;
+    transition: .3s ease background-color;
+}
+
+.selector__option:hover {
+    background: rgba(255, 255, 255, 0.05)
 }
 
 /* Popup */

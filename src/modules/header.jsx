@@ -9,6 +9,12 @@ const mapStateToProps = state => ({
   devices: state.devices,
 });
 
+const Link = ({ uri = "/", children, icon = "help-circle" }) =>
+  <NavLink exact to={uri} className="topbar-menu__link" activeClassName="topbar-menu__link--active">
+    <span className={"topbar-menu__link--icon icon__" + icon}></span>
+    <span className="topbar-menu__link--text">{children}</span>
+  </NavLink>
+
 class Header extends React.Component {
   render() {
     const { username, avatar, balance } = this.props.user;
@@ -27,18 +33,10 @@ class Header extends React.Component {
         </Switch>
         {mobile ? <Logo mobile={mobile} /> : false}
         <nav className="topbar-menu">
-          <NavLink exact to="/" className="topbar-menu__link" activeClassName="topbar-menu__link--active">
-            <span className="topbar-menu__link--icon icon__home"></span>
-            <span className="topbar-menu__link--text">Главная</span>
-          </NavLink>
-          <NavLink to="/support" className="topbar-menu__link" activeClassName="topbar-menu__link--active">
-            <span className="topbar-menu__link--icon icon__headphones"></span>
-            <span className="topbar-menu__link--text">Поддержка</span>
-          </NavLink>
-          <NavLink to="/faq" className="topbar-menu__link" activeClassName="topbar-menu__link--active">
-            <span className="topbar-menu__link--icon icon__help-circle"></span>
-            <span className="topbar-menu__link--text">FAQ</span>
-          </NavLink>
+          <Link icon="home">Главная</Link>
+          <Link uri="/support" icon="headphones">Поддержка</Link>
+          <Link uri="/faq" icon="help-circle">FAQ</Link>
+          <Link uri="/market" icon="bag">Маркет</Link>
         </nav>
         {mobile ? <div className="topbar-profile">
           <div className="flex aligned">

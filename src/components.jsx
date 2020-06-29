@@ -49,7 +49,7 @@ export const Checkbox = ({ onChange }) => (
     </label>
 );
 
-export class count {
+export class Count {
     constructor(number, toFixed = 2, currency = "₽") {
         if (isNaN(number)) {
             const numberParse = +number.replace(/[^0-9$.,]/g, "");
@@ -61,17 +61,17 @@ export class count {
     }
 
     static get(value, toFixed = 2, currency) {
-        return new count(value, toFixed, currency).value;
+        return new Count(value, toFixed, currency).value;
     }
 }
 
 export const Price = ({ children = 0, toFixed = 2 }) => {
     const currency = useSelector(state => state.lang.list.currency);
-    return <>{count.get(children, toFixed, currency)}</>;
+    return <>{Count.get(children, toFixed, currency)}</>;
 };
 
 export const Weapon = ({ data = {}, picked, onClick }) => {
-    const { RNColor = "lipstick", price = 0, imageSrc = "/assets/img/gun.png", name = "???", alias="???" } = data;
+    const { RNColor = "lipstick", price = 0, imageSrc = "/assets/img/gun.png", name = "???", alias="???", ball = false | { content: String | Number, note: String } } = data;
     return (
         <div className={picked ? "weapon weapon--picked" : "weapon"} onClick={onClick}>
             <div className="weapon__title">
@@ -79,10 +79,23 @@ export const Weapon = ({ data = {}, picked, onClick }) => {
                 <span className="weapon__title--circle" style={{ "background": `var(--color-${RNColor})` }}></span>
             </div>
             <img className="weapon__image" alt="weapon gun" src={imageSrc} />
-            <div className="weapon__name">
-                <span className="weapon__name--0">{alias}</span>
-                <span className="weapon__name--1">{name}</span>
-            </div>
+            {ball ? (
+                <div className="weapon__wrap-content">
+                    <div className="weapon__name">
+                        <span className="weapon__name--0">{alias}</span>
+                        <span className="weapon__name--1">{name}</span>
+                    </div>
+                    <div className="weapon__ball">
+                        <span className={"weapon__ball--content" + (isNaN(ball.content) ? ` icon__${ball.content}` : "")}>{!isNaN(ball.content) ? ball.content : false}</span>
+                        <span className="weapon__ball--note">{ball.note}</span>
+                    </div>
+                </div>
+            ) : (
+                <div className="weapon__name">
+                    <span className="weapon__name--0">{alias}</span>
+                    <span className="weapon__name--1">{name}</span>
+                </div>
+            )}
         </div>
     );
 };
@@ -172,32 +185,64 @@ export const CompactAccount = () => {
                     <Button color="green" icon="chevron-down-double">Получить</Button>
                 </div>
             </div>
-            <div className="compact-picking">
-                <div className="compact-picking__title">
-                    <span className="compact-picking--title">Выберите скины</span>
-                    <span className="compact-picking--icon"></span>
-                </div>
-                <div className="compact-picking__info">
-                    <div className="compact-picking__column">
-                        <div className="compact-picking__row">
-                            <span className="compact-picking__row--0">отдаёте</span>
-                            <span className="compact-picking__row--1"><Price>175.21</Price></span>
-                        </div>
-                        <div className="compact-picking__row">
-                            <span className="compact-picking__row--0">получаете</span>
-                            <span className="compact-picking__row--1"><Price>5675.21</Price></span>
-                        </div>
-                    </div>
-                    <Button color="blue">Подтвердить</Button>
-                </div>
-                <div className="compact-picking__options">
-                    <input className="compact-picking__input" placeholder="Название скина" />
-                    <input className="compact-picking__input" placeholder="Цена" />
-                </div>
-                <div className="compact-picking__inventory">
-                    {weapons.map((weapon, index) => <Weapon data={weapon} picked={weapons[index]["picked"] || allPicked} key={"inventory_weapon_hz_" + index} onClick={() => pickWeapon(index)} />)}
-                </div>
-            </div>
         </div>
     );
 };
+
+export const Arraize = (array) => array instanceof Array ? array : [array];
+
+export class Selector extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            show: false,
+            currentIndex: 0,
+            values: Arraize(props.children).map(child => child.props.children)
+        }
+    }
+
+    defaultStart(index = this.state.currentIndex) {
+        const synEvent = {
+            target: {
+                name: this.props.name ? this.props.name : null,
+                value: this.state.values[index]
+            }
+        };
+        if (typeof this.props.onChange == "function") this.props.onChange(synEvent);
+        if (typeof this.props.onStart == "function") this.props.onStart(synEvent);
+    }
+
+    show() {
+        this.setState({
+            show: !this.state.show
+        });
+    }
+
+    select(index) {
+        this.defaultStart(index);
+        this.setState({
+            currentIndex: index,
+            show: false
+        });
+    }
+
+    render() {
+        const { currentIndex, values, show } = this.state;
+        return (
+            <div className={`selector ${show ? "selector--active" : ""}`}>
+                <div className="selector__current" onClick={() => this.show()}>{values[currentIndex]}</div>
+                <div className="selector__menu">
+                    {values.map((value, index) => {
+                        if (currentIndex === index) return false;
+                        return (
+                            <span className="selector__option" onClick={() => this.select(index)} key={`selector_option_${index}`}>
+                                {value}
+                            </span>
+                        );
+                    })}
+                </div>
+            </div>
+        );
+    }
+}

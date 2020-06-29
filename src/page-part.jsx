@@ -6,6 +6,7 @@ import FAQPage from "./pages/faq";
 import Terms from "./pages/terms";
 import ProfileAnother from "./pages/profile_another";
 import Profile from "./pages/profile";
+import Market from "./pages/market";
 class PagePart extends React.Component {
   render() {
     return (
@@ -25,6 +26,9 @@ class PagePart extends React.Component {
           </Route>
           <Route exact path="/profile">
             <Profile />
+          </Route>
+          <Route exact path="/market">
+            <Market onChange={(e) => console.log(e)} />
           </Route>
           <Route exact path="/profile_another">
             <ProfileAnother />

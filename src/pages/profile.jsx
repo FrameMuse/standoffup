@@ -1,5 +1,5 @@
 import React from "react";
-import { Price, Button } from "../components";
+import { Price, Button, Weapon } from "../components";
 import { Weapons } from "../pages/home";
 import { connect } from "react-redux";
 
@@ -31,11 +31,24 @@ const Matches = Array(25).fill(0).map((v, index) => ({ index: index, won: index 
 
 const mapStateToProps = state => ({
   user: state.user,
+  inventory: state.inventory
 });
 
 class Profile extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      index: 0
+    };
+  }
+  switchRouter(index) {
+    this.setState({ index: index })
+  }
   render() {
     const user = this.props.user;
+    const weapons = this.props.inventory.weapons;
+    const buh = (g) => this.switchRouter(g);
     return (
       <React.Fragment>
         <div className="profile-another">
@@ -81,10 +94,10 @@ class Profile extends React.Component {
           </div>
           <div className="profile-content">
             <div className="profile-switcher">
-              <div className="profile-switcher__route profile-switcher__route--active">Статистика раундов</div>
-              <div className="profile-switcher__route">История выводов</div>
+              <div className={"profile-switcher__route" + (!this.state.index ? " profile-switcher__route--active" : "" )} onClick={() => buh(0)}>Статистика раундов</div>
+              <div className={"profile-switcher__route" + (this.state.index ? " profile-switcher__route--active" : "")} onClick={() => buh(1)}>История выводов</div>
             </div>
-            <table className="profile-table">
+            <table className={"profile-table" + (this.state.index ? " hidden" : "")}>
               <thead>
                 <tr>
                   <td>ID раунда</td>
@@ -98,6 +111,9 @@ class Profile extends React.Component {
                 {Matches.map(match => <Match won={match.won} date={match.index} index={678909 + match.index} key={678909 + match.index} weapons={weaponsArray} />)}
               </tbody>
             </table>
+            <div className={"profile-weapons" + (!this.state.index ? " hidden" : "")}>
+              {weapons.map((weapon, index) => <Weapon data={{ ...weapon, ball: { content: index % 2 === 0 ? "check" : "cross", note: index % 2 === 0 ? "Успешно" : "Ошибка" } }} key={"market_weapon" + index} />)}
+            </div>
           </div>
         </div>
       </React.Fragment>
